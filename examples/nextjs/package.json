@@ -11,12 +11,13 @@
 		"clean": "rm -rf .next"
 	},
 	"dependencies": {
-		"@liquidglass/react": "^0.1.2",
 		"@heroui/card": "^2.2.20",
 		"@heroui/react": "^2.8.0-beta.8",
+		"@liquidglass/react": "^0.1.2",
 		"framer-motion": "^12.18.1",
 		"next": "15.3.3",
 		"react": "^19.0.0",
+		"react-code-blocks": "^0.1.6",
 		"react-dom": "^19.0.0"
 	},
 	"devDependencies": {

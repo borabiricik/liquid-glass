@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "@liquidglass/react Example",
+  title: "React Liquid Glass",
   description: "Example project showcasing the @liquidglass/react package",
 };
 

@@ -1,13 +1,17 @@
 "use client";
 import { Card, CardBody } from "@heroui/card";
+import { Code, Tab, Tabs } from "@heroui/react";
 import { Slider } from "@heroui/slider";
+import { Snippet } from "@heroui/snippet";
 import { LiquidGlass } from "@liquidglass/react";
+import Image from "next/image";
 import React, { useCallback, useState } from "react";
+import { CodeBlock, CopyBlock, nord } from "react-code-blocks";
 
 const Generator = () => {
 	const [settings, setSettings] = useState({
 		borderRadius: 150,
-		blur: 0.25,
+		blur: 1,
 		contrast: 1.2,
 		brightness: 1.05,
 		saturation: 1.1,
@@ -29,7 +33,7 @@ const Generator = () => {
 	return (
 		<div className="flex flex-col-reverse lg:flex-row items-center justify-center h-screen fixed inset-0">
 			{/* Settings Panel - Sol taraf (sabit) */}
-			<div className="w-full lg:w-1/2 flex-shrink-0 p-6">
+			<div className="w-full lg:w-1/2 lg:flex-1 flex-shrink-0 p-6">
 				<div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-4 lg:p-6 h-fit">
 					<h2 className="text-white text-xl lg:text-2xl font-bold mb-4 lg:mb-6">
 						Liquid Glass Controls
@@ -187,7 +191,7 @@ const Generator = () => {
 			</div>
 
 			{/* Preview Area - Sağ taraf (scroll edilebilir) */}
-			<div className="w-full lg:w-1/2 flex-shrink-0 p-6">
+			<div className="w-full lg:flex-1 flex-shrink-0 p-6">
 				<div className="min-h-full flex flex-col items-stretch justify-start space-y-8">
 					{/* Ana Liquid Glass */}
 					<div className="flex items-stretch justify-center w-full">
@@ -209,6 +213,58 @@ const Generator = () => {
 					</div>
 				</div>
 			</div>
+
+			<Card className="w-full lg:w-1/2 lg:max-w-xl hidden lg:block">
+				<CardBody>
+					<Tabs>
+						<Tab
+							className="flex flex-col gap-4"
+							title={
+								<div className="flex items-center space-x-2">
+									<Image
+										src={"/react.svg"}
+										alt="react"
+										width={20}
+										height={20}
+									/>
+									<span className="text-white text-sm font-medium">React</span>
+								</div>
+							}
+						>
+							<div className="flex flex-col gap-2 ">
+								<Snippet>npm install @liquidglass/react</Snippet>
+								<Snippet>yarn add @liquidglass/react</Snippet>
+								<Snippet>pnpm add @liquidglass/react</Snippet>
+							</div>
+							<div className="">
+								<CopyBlock
+									wrapLongLines
+									language="typescript"
+									text={`
+import { LiquidGlass } from '@liquidglass/react';
+
+function App() {
+  return (
+      <LiquidGlass
+        borderRadius={${settings.borderRadius}}
+        blur={${settings.blur}}
+        contrast={${settings.contrast}}
+        brightness={${settings.brightness}}
+        saturation={${settings.saturation}}
+      >
+        Your content here...
+      </LiquidGlass>
+  );
+}
+`}
+									theme={nord}
+									showLineNumbers
+								/>
+							</div>
+						</Tab>
+					</Tabs>
+				</CardBody>
+			</Card>
 		</div>
 	);
 };
