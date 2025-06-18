@@ -1,6 +1,6 @@
 "use client";
 import type React from "react";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useId, useRef, useState } from "react";
 
 interface LiquidGlassProps {
 	width?: number;
@@ -37,9 +37,8 @@ const LiquidGlass: React.FC<LiquidGlassProps> = ({
 	const feImageRef = useRef<SVGFEImageElement>(null);
 	const feDisplacementMapRef = useRef<SVGFEDisplacementMapElement>(null);
 
-	const [id] = useState(
-		() => "liquid-glass-" + Math.random().toString(36).substr(2, 9),
-	);
+	const reactId = useId();
+	const id = `liquid-glass-${reactId.replace(/:/g, "-")}`;
 
 	const canvasDPI = 1;
 
@@ -138,6 +137,7 @@ const LiquidGlass: React.FC<LiquidGlassProps> = ({
 		brightness,
 		saturation,
 		shadowIntensity,
+    
 	]);
 
 	// Update shader when component mounts or parameters change

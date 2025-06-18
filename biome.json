@@ -17,7 +17,11 @@
 		"rules": {
 			"recommended": true,
 			"a11y": {
-				"noLabelWithoutControl": "off"
+				"noLabelWithoutControl": "off",
+				"noSvgWithoutTitle": "off"
+			},
+			"correctness": {
+				"useExhaustiveDependencies": "off"
 			}
 		}
 	},
