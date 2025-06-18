@@ -31,9 +31,9 @@ const Generator = () => {
 	}, []);
 
 	return (
-		<div className="flex flex-col-reverse lg:flex-row items-center justify-center h-screen fixed inset-0">
+		<div className="flex flex-col-reverse lg:flex-row items-center justify-center h-screen fixed inset-0 px-4">
 			{/* Settings Panel - Sol taraf (sabit) */}
-			<div className="w-full lg:w-1/2 lg:flex-1 flex-shrink-0 p-6">
+			<div className="w-full lg:w-1/2 lg:flex-1 flex-shrink-0">
 				<div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-4 lg:p-6 h-fit">
 					<h2 className="text-white text-xl lg:text-2xl font-bold mb-4 lg:mb-6">
 						Liquid Glass Controls

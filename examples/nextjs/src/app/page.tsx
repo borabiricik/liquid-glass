@@ -37,9 +37,11 @@ const HomePage = () => {
 				height={2160}
 				className="object-cover"
 			/>
-			<Generator />
+			<div className="px-4">
+				<Generator />
+			</div>
 		</div>
 	);
 };
 
-export default HomePage; 
+export default HomePage;
