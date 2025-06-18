@@ -9,16 +9,20 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@heroui/card": "^2.2.20",
+    "@heroui/react": "^2.8.0-beta.8",
+    "framer-motion": "^12.18.1",
+    "next": "15.3.3",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "next": "15.3.3"
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@biomejs/biome": "^2.0.0",
+    "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4"
+    "tailwindcss": "^4",
+    "typescript": "^5"
   }
 }
