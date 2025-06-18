@@ -6,8 +6,6 @@ import LiquidGlass from "./LiquidGlass";
 
 const Generator = () => {
 	const [settings, setSettings] = useState({
-		width: 300,
-		height: 200,
 		borderRadius: 150,
 		blur: 0.25,
 		contrast: 1.2,
@@ -34,7 +32,7 @@ const Generator = () => {
 			<div className="w-1/2 flex-shrink-0 overflow-y-auto p-6">
 				<div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 h-fit">
 					<h2 className="text-white text-2xl font-bold mb-6">
-						Liquid Glass Kontrolleri
+						Liquid Glass Controls
 					</h2>
 
 					{/* Settings Grid - 2 kolon */}
@@ -43,41 +41,7 @@ const Generator = () => {
 						<div className="space-y-4">
 							<div>
 								<label className="text-white/80 text-sm mb-2 block">
-									Genişlik
-								</label>
-								<Slider
-									value={settings.width}
-									onChange={(value) => updateSetting("width", value)}
-									minValue={200}
-									maxValue={500}
-									step={10}
-									className="w-full"
-								/>
-								<span className="text-white/60 text-xs">
-									{settings.width}px
-								</span>
-							</div>
-
-							<div>
-								<label className="text-white/80 text-sm mb-2 block">
-									Yükseklik
-								</label>
-								<Slider
-									value={settings.height}
-									onChange={(value) => updateSetting("height", value)}
-									minValue={150}
-									maxValue={400}
-									step={10}
-									className="w-full"
-								/>
-								<span className="text-white/60 text-xs">
-									{settings.height}px
-								</span>
-							</div>
-
-							<div>
-								<label className="text-white/80 text-sm mb-2 block">
-									Köşe Yuvarlaklığı
+									Border Radius
 								</label>
 								<Slider
 									value={settings.borderRadius}
@@ -94,7 +58,7 @@ const Generator = () => {
 
 							<div>
 								<label className="text-white/80 text-sm mb-2 block">
-									Bulanıklık
+									Blur
 								</label>
 								<Slider
 									value={settings.blur}
@@ -111,7 +75,7 @@ const Generator = () => {
 
 							<div>
 								<label className="text-white/80 text-sm mb-2 block">
-									Kontrast
+									Contrast
 								</label>
 								<Slider
 									value={settings.contrast}
@@ -131,7 +95,7 @@ const Generator = () => {
 						<div className="space-y-4">
 							<div>
 								<label className="text-white/80 text-sm mb-2 block">
-									Parlaklık
+									Brightness
 								</label>
 								<Slider
 									value={settings.brightness}
@@ -148,7 +112,7 @@ const Generator = () => {
 
 							<div>
 								<label className="text-white/80 text-sm mb-2 block">
-									Doygunluk
+									Saturation
 								</label>
 								<Slider
 									value={settings.saturation}
@@ -165,7 +129,7 @@ const Generator = () => {
 
 							<div>
 								<label className="text-white/80 text-sm mb-2 block">
-									Gölge Yoğunluğu
+									Shadow Intensity
 								</label>
 								<Slider
 									value={settings.shadowIntensity}
@@ -182,7 +146,7 @@ const Generator = () => {
 
 							<div>
 								<label className="text-white/80 text-sm mb-2 block">
-									Displacement Ölçek
+									Displacement Scale
 								</label>
 								<Slider
 									value={settings.displacementScale}
@@ -201,7 +165,7 @@ const Generator = () => {
 
 							<div>
 								<label className="text-white/80 text-sm mb-2 block">
-									Elastiklik
+									Elasticity
 								</label>
 								<Slider
 									value={settings.elasticity}
@@ -219,20 +183,18 @@ const Generator = () => {
 					</div>
 
 					<div className="mt-6 text-white/60 text-xs text-center">
-						💡 Slider'ları kullanarak liquid glass efektini
-						özelleştirebilirsiniz!
+						💡 Use the sliders to customize your liquid glass effect!
 					</div>
 				</div>
 			</div>
 
 			{/* Preview Area - Sağ taraf (scroll edilebilir) */}
 			<div className="w-1/2 flex-shrink-0 p-6">
-				<div className="min-h-full flex flex-col items-center justify-start space-y-8">
+				<div className="min-h-full flex flex-col items-stretch justify-start space-y-8 ">
 					{/* Ana Liquid Glass */}
-					<div className="flex items-center justify-center">
+					<div className="flex items-stretch justify-center w-full">
 						<LiquidGlass
-							width={settings.width}
-							height={settings.height}
+							className="min-h-[200px]"
 							borderRadius={settings.borderRadius}
 							blur={settings.blur}
 							contrast={settings.contrast}
@@ -242,7 +204,7 @@ const Generator = () => {
 							displacementScale={settings.displacementScale || 1}
 							elasticity={settings.elasticity}
 						>
-							<div className="text-white/80 text-sm font-medium">
+							<div className="text-white/80 text-sm font-medium h-full">
 								Liquid Glass
 							</div>
 						</LiquidGlass>

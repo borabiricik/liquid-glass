@@ -3,8 +3,6 @@ import type React from "react";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 
 interface LiquidGlassProps {
-	width?: number;
-	height?: number;
 	borderRadius?: number;
 	blur?: number;
 	contrast?: number;
@@ -14,13 +12,12 @@ interface LiquidGlassProps {
 	displacementScale?: number;
 	elasticity?: number;
 	zIndex?: number;
+	className?: string;
 	children?: React.ReactNode;
 }
 
 const LiquidGlass: React.FC<LiquidGlassProps> = ({
-	width = 300,
-	height = 200,
-	borderRadius = 150,
+	borderRadius = 20,
 	blur = 0.25,
 	contrast = 1.2,
 	brightness = 1.05,
@@ -29,6 +26,7 @@ const LiquidGlass: React.FC<LiquidGlassProps> = ({
 	displacementScale = 1,
 	elasticity = 0.6,
 	zIndex = 9999,
+	className,
 	children,
 }) => {
 	const containerRef = useRef<HTMLDivElement>(null);
@@ -39,6 +37,9 @@ const LiquidGlass: React.FC<LiquidGlassProps> = ({
 
 	const reactId = useId();
 	const id = `liquid-glass-${reactId.replace(/:/g, "-")}`;
+
+	const [width, setWidth] = useState(300);
+	const [height, setHeight] = useState(200);
 
 	const canvasDPI = 1;
 
@@ -75,8 +76,18 @@ const LiquidGlass: React.FC<LiquidGlassProps> = ({
 		const context = canvas.getContext("2d");
 		if (!context) return;
 
-		const w = width * canvasDPI;
-		const h = height * canvasDPI;
+		const w = Math.max(1, Math.floor(width * canvasDPI));
+		const h = Math.max(1, Math.floor(height * canvasDPI));
+		
+		// Ensure we have valid dimensions
+		if (w <= 0 || h <= 0) return;
+		
+		// Update canvas size if needed
+		if (canvas.width !== w || canvas.height !== h) {
+			canvas.width = w;
+			canvas.height = h;
+		}
+		
 		const data = new Uint8ClampedArray(w * h * 4);
 
 		let maxScale = 0;
@@ -117,13 +128,24 @@ const LiquidGlass: React.FC<LiquidGlassProps> = ({
 			data[i + 3] = 255;
 		}
 
-		context.putImageData(new ImageData(data, w, h), 0, 0);
-		feImage.setAttributeNS(
-			"http://www.w3.org/1999/xlink",
-			"href",
-			canvas.toDataURL(),
-		);
-		feDisplacementMap.setAttribute("scale", (maxScale / canvasDPI).toString());
+		// Ensure data length is correct for ImageData
+		const expectedLength = w * h * 4;
+		if (data.length !== expectedLength) {
+			console.warn('Data length mismatch for ImageData:', data.length, 'expected:', expectedLength);
+			return;
+		}
+
+		try {
+			context.putImageData(new ImageData(data, w, h), 0, 0);
+			feImage.setAttributeNS(
+				"http://www.w3.org/1999/xlink",
+				"href",
+				canvas.toDataURL(),
+			);
+			feDisplacementMap.setAttribute("scale", (maxScale / canvasDPI).toString());
+		} catch (error) {
+			console.error('Error creating ImageData:', error, 'w:', w, 'h:', h, 'data.length:', data.length);
+		}
 	}, [
 		width,
 		height,
@@ -139,6 +161,26 @@ const LiquidGlass: React.FC<LiquidGlassProps> = ({
 		shadowIntensity,
     
 	]);
+
+	// ResizeObserver to track container size
+	useEffect(() => {
+		const container = containerRef.current;
+		if (!container) return;
+
+		const resizeObserver = new ResizeObserver((entries) => {
+			for (const entry of entries) {
+				const { width: newWidth, height: newHeight } = entry.contentRect;
+				setWidth(Math.max(newWidth, 100)); // Minimum width
+				setHeight(Math.max(newHeight, 100)); // Minimum height
+			}
+		});
+
+		resizeObserver.observe(container);
+
+		return () => {
+			resizeObserver.disconnect();
+		};
+	}, []);
 
 	// Update shader when component mounts or parameters change
 	useEffect(() => {
@@ -199,10 +241,11 @@ const LiquidGlass: React.FC<LiquidGlassProps> = ({
 			{/* Glass Container */}
 			<div
 				ref={containerRef}
+				className={className}
 				style={{
 					position: "relative",
-					width: `${width}px`,
-					height: `${height}px`,
+					width: "100%",
+					height: "100%",
 					overflow: "hidden",
 					borderRadius: `${borderRadius}px`,
 					boxShadow: `0 4px 8px rgba(0, 0, 0, ${shadowIntensity}), 0 -10px 25px inset rgba(0, 0, 0, 0.15)`,
