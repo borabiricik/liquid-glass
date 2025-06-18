@@ -27,20 +27,20 @@ const Generator = () => {
 	}, []);
 
 	return (
-		<div className="flex items-center justify-center h-screen fixed inset-0">
+		<div className="flex flex-col-reverse lg:flex-row items-center justify-center h-screen fixed inset-0">
 			{/* Settings Panel - Sol taraf (sabit) */}
-			<div className="w-1/2 flex-shrink-0 overflow-y-auto p-6">
-				<div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 h-fit">
-					<h2 className="text-white text-2xl font-bold mb-6">
+			<div className="w-full lg:w-1/2 flex-shrink-0 p-6">
+				<div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-4 lg:p-6 h-fit">
+					<h2 className="text-white text-xl lg:text-2xl font-bold mb-4 lg:mb-6">
 						Liquid Glass Controls
 					</h2>
 
 					{/* Settings Grid - 2 kolon */}
-					<div className="grid grid-cols-2 gap-6">
+					<div className="grid grid-cols-2 gap-3 lg:gap-6">
 						{/* Sol kolon */}
-						<div className="space-y-4">
+						<div className="space-y-2 lg:space-y-4">
 							<div>
-								<label className="text-white/80 text-sm mb-2 block">
+								<label className="text-white/80 text-xs mb-1 block">
 									Border Radius
 								</label>
 								<Slider
@@ -57,7 +57,7 @@ const Generator = () => {
 							</div>
 
 							<div>
-								<label className="text-white/80 text-sm mb-2 block">
+								<label className="text-white/80 text-xs mb-1 block">
 									Blur
 								</label>
 								<Slider
@@ -74,7 +74,7 @@ const Generator = () => {
 							</div>
 
 							<div>
-								<label className="text-white/80 text-sm mb-2 block">
+								<label className="text-white/80 text-xs mb-1 block">
 									Contrast
 								</label>
 								<Slider
@@ -92,9 +92,9 @@ const Generator = () => {
 						</div>
 
 						{/* Sağ kolon */}
-						<div className="space-y-4">
+						<div className="space-y-2 lg:space-y-4">
 							<div>
-								<label className="text-white/80 text-sm mb-2 block">
+								<label className="text-white/80 text-xs mb-1 block">
 									Brightness
 								</label>
 								<Slider
@@ -111,7 +111,7 @@ const Generator = () => {
 							</div>
 
 							<div>
-								<label className="text-white/80 text-sm mb-2 block">
+								<label className="text-white/80 text-xs mb-1 block">
 									Saturation
 								</label>
 								<Slider
@@ -128,7 +128,7 @@ const Generator = () => {
 							</div>
 
 							<div>
-								<label className="text-white/80 text-sm mb-2 block">
+								<label className="text-white/80 text-xs mb-1 block">
 									Shadow Intensity
 								</label>
 								<Slider
@@ -145,7 +145,7 @@ const Generator = () => {
 							</div>
 
 							<div>
-								<label className="text-white/80 text-sm mb-2 block">
+								<label className="text-white/80 text-xs mb-1 block">
 									Displacement Scale
 								</label>
 								<Slider
@@ -164,7 +164,7 @@ const Generator = () => {
 							</div>
 
 							<div>
-								<label className="text-white/80 text-sm mb-2 block">
+								<label className="text-white/80 text-xs mb-1 block">
 									Elasticity
 								</label>
 								<Slider
@@ -182,15 +182,15 @@ const Generator = () => {
 						</div>
 					</div>
 
-					<div className="mt-6 text-white/60 text-xs text-center">
+					<div className="mt-3 lg:mt-6 text-white/60 text-xs text-center">
 						💡 Use the sliders to customize your liquid glass effect!
 					</div>
 				</div>
 			</div>
 
 			{/* Preview Area - Sağ taraf (scroll edilebilir) */}
-			<div className="w-1/2 flex-shrink-0 p-6">
-				<div className="min-h-full flex flex-col items-stretch justify-start space-y-8 ">
+			<div className="w-full lg:w-1/2 flex-shrink-0 p-6">
+				<div className="min-h-full flex flex-col items-stretch justify-start space-y-8">
 					{/* Ana Liquid Glass */}
 					<div className="flex items-stretch justify-center w-full">
 						<LiquidGlass

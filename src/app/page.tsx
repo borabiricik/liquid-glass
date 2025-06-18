@@ -8,17 +8,33 @@ const HomePage = () => {
 			<Image
 				src="/wallpapers/1.jpg"
 				alt="wallpaper"
-        quality={100}
-        width={4096}
-        height={2160}
+				quality={100}
+				width={4096}
+				height={2160}
 				className="object-cover"
 			/>
-      <Image
+			<Image
 				src="/wallpapers/2.jpg"
 				alt="wallpaper"
-        quality={100}
-        width={4096}
-        height={2160}
+				quality={100}
+				width={4096}
+				height={2160}
+				className="object-cover"
+			/>
+			<Image
+				src="/wallpapers/3.jpg"
+				alt="wallpaper"
+				quality={100}
+				width={4096}
+				height={2160}
+				className="object-cover"
+			/>
+			<Image
+				src="/wallpapers/4.jpg"
+				alt="wallpaper"
+				quality={100}
+				width={4096}
+				height={2160}
 				className="object-cover"
 			/>
 			<Generator />
