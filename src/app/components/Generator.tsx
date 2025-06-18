@@ -239,7 +239,7 @@ const Generator = () => {
 							brightness={settings.brightness}
 							saturation={settings.saturation}
 							shadowIntensity={settings.shadowIntensity}
-							displacementScale={settings.displacementScale}
+							displacementScale={settings.displacementScale || 1}
 							elasticity={settings.elasticity}
 						>
 							<div className="text-white/80 text-sm font-medium">
