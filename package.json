@@ -1,28 +1,37 @@
 {
-  "name": "liquid-glass-generator",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "@heroui/card": "^2.2.20",
-    "@heroui/react": "^2.8.0-beta.8",
-    "framer-motion": "^12.18.1",
-    "next": "15.3.3",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "^2.0.0",
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "tailwindcss": "^4",
-    "typescript": "^5"
-  }
+	"name": "liquidglass",
+	"version": "0.1.0",
+	"private": false,
+	"description": "A collection of liquid glass effect components for different frameworks",
+	"author": "Liquid Glass Team",
+	"license": "MIT",
+	"workspaces": [
+		"packages/*"
+	],
+	"scripts": {
+		"build": "yarn workspaces foreach -A run build",
+		"dev": "yarn workspace @liquid-glass/example-nextjs dev",
+		"clean": "yarn workspaces foreach -A run clean",
+		"lint": "yarn workspaces foreach -A run lint",
+		"changeset": "changeset",
+		"version-packages": "changeset version",
+		"release": "yarn build && changeset publish"
+	},
+	"devDependencies": {
+		"@changesets/cli": "^2.27.9",
+		"@biomejs/biome": "^2.0.0",
+		"typescript": "^5"
+	},
+	"keywords": [
+		"liquid-glass",
+		"glass-effect",
+		"react",
+		"vue",
+		"ui-components",
+		"backdrop-filter"
+	],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/your-username/liquid-glass.git"
+	}
 }

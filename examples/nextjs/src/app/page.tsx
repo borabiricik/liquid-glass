@@ -21,25 +21,9 @@ const HomePage = () => {
 				height={2160}
 				className="object-cover"
 			/>
-			<Image
-				src="/wallpapers/3.jpg"
-				alt="wallpaper"
-				quality={100}
-				width={4096}
-				height={2160}
-				className="object-cover"
-			/>
-			<Image
-				src="/wallpapers/4.jpg"
-				alt="wallpaper"
-				quality={100}
-				width={4096}
-				height={2160}
-				className="object-cover"
-			/>
 			<Generator />
 		</div>
 	);
 };
 
-export default HomePage;
+export default HomePage; 

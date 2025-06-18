@@ -1,8 +1,8 @@
 "use client";
 import { Card, CardBody } from "@heroui/card";
 import { Slider } from "@heroui/slider";
+import { LiquidGlass } from "@liquidglass/react";
 import React, { useCallback, useState } from "react";
-import LiquidGlass from "./LiquidGlass";
 
 const Generator = () => {
 	const [settings, setSettings] = useState({
@@ -57,9 +57,7 @@ const Generator = () => {
 							</div>
 
 							<div>
-								<label className="text-white/80 text-xs mb-1 block">
-									Blur
-								</label>
+								<label className="text-white/80 text-xs mb-1 block">Blur</label>
 								<Slider
 									value={settings.blur}
 									onChange={(value) => updateSetting("blur", value)}

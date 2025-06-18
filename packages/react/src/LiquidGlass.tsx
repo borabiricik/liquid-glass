@@ -1,8 +1,7 @@
-"use client";
 import type React from "react";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 
-interface LiquidGlassProps {
+export interface LiquidGlassProps {
 	borderRadius?: number;
 	blur?: number;
 	contrast?: number;
@@ -78,16 +77,16 @@ const LiquidGlass: React.FC<LiquidGlassProps> = ({
 
 		const w = Math.max(1, Math.floor(width * canvasDPI));
 		const h = Math.max(1, Math.floor(height * canvasDPI));
-		
+
 		// Ensure we have valid dimensions
 		if (w <= 0 || h <= 0) return;
-		
+
 		// Update canvas size if needed
 		if (canvas.width !== w || canvas.height !== h) {
 			canvas.width = w;
 			canvas.height = h;
 		}
-		
+
 		const data = new Uint8ClampedArray(w * h * 4);
 
 		let maxScale = 0;
@@ -131,7 +130,12 @@ const LiquidGlass: React.FC<LiquidGlassProps> = ({
 		// Ensure data length is correct for ImageData
 		const expectedLength = w * h * 4;
 		if (data.length !== expectedLength) {
-			console.warn('Data length mismatch for ImageData:', data.length, 'expected:', expectedLength);
+			console.warn(
+				"Data length mismatch for ImageData:",
+				data.length,
+				"expected:",
+				expectedLength,
+			);
 			return;
 		}
 
@@ -142,9 +146,21 @@ const LiquidGlass: React.FC<LiquidGlassProps> = ({
 				"href",
 				canvas.toDataURL(),
 			);
-			feDisplacementMap.setAttribute("scale", (maxScale / canvasDPI).toString());
+			feDisplacementMap.setAttribute(
+				"scale",
+				(maxScale / canvasDPI).toString(),
+			);
 		} catch (error) {
-			console.error('Error creating ImageData:', error, 'w:', w, 'h:', h, 'data.length:', data.length);
+			console.error(
+				"Error creating ImageData:",
+				error,
+				"w:",
+				w,
+				"h:",
+				h,
+				"data.length:",
+				data.length,
+			);
 		}
 	}, [
 		width,
@@ -154,12 +170,6 @@ const LiquidGlass: React.FC<LiquidGlassProps> = ({
 		elasticity,
 		roundedRectSDF,
 		smoothStep,
-		blur,
-		contrast,
-		brightness,
-		saturation,
-		shadowIntensity,
-    
 	]);
 
 	// ResizeObserver to track container size
