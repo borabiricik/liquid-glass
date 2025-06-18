@@ -29,7 +29,7 @@ export default [
         outDir: "./dist",
       }),
       addDirective({
-        directive: "use client",
+        directive: "'use client'",
       }),
     ],
     external: ["react", "react-dom", "react/jsx-runtime"],
